@@ -25,6 +25,14 @@ public class CatGraphicsController : MonoBehaviour
 	public Sprite scratchSprite;
 	public float scratchAnimSpeed = 1f;
 
+	public AudioSource audioSourceWalk;
+	public float addWalkVolumePerSecond = 1f;
+	public AudioSource audioSourceScratch;
+	public float scratchMeowChancePerSecond = 1f;
+
+	private float maxVolumeWalk;
+	private float maxVolumeScratch;
+
 	private Material cachedMaterial;
 	private SpriteRenderer cachedRenderer;
 
@@ -60,7 +68,17 @@ public class CatGraphicsController : MonoBehaviour
 			cachedMaterial = cachedRenderer.material;
 			cachedRenderer.material.shader = Shader.Find("Sch/Characters/Cat");
 		}
-    }
+		if (audioSourceWalk != null) {
+			maxVolumeWalk = audioSourceWalk.volume;
+			audioSourceWalk.loop = true;
+			audioSourceWalk.volume = 0f;
+		}
+		if (audioSourceScratch != null)
+		{
+			maxVolumeScratch = audioSourceScratch.volume;
+			//audioSourceScratch.volume = 0f;
+		}
+	}
 
     // Update is called once per frame
     void Update()
@@ -69,6 +87,7 @@ public class CatGraphicsController : MonoBehaviour
 		{
 			cachedRenderer.sprite = walkSprite;
 			cachedMaterial.SetVector("_UVXMod", new Vector2(.25f, 0f));
+			audioSourceWalk.volume -= addWalkVolumePerSecond * Time.deltaTime;
 		}
 		else if (action == CatActions.Walking)
 		{
@@ -78,6 +97,7 @@ public class CatGraphicsController : MonoBehaviour
 					Mathf.Floor((Time.time * walkAnimSpeed) % 4) * .25f
 				)
 			);
+			audioSourceWalk.volume += addWalkVolumePerSecond * Time.deltaTime;
 		}
 		else if (action == CatActions.Scratching)
 		{
@@ -87,6 +107,10 @@ public class CatGraphicsController : MonoBehaviour
 					Mathf.Floor((Time.time * scratchAnimSpeed) % 2) * .5f
 				)
 			);
+			audioSourceWalk.volume -= addWalkVolumePerSecond * Time.deltaTime;
+			if (!audioSourceScratch.isPlaying && Random.value < scratchMeowChancePerSecond * Time.deltaTime) {
+				audioSourceScratch.PlayOneShot(audioSourceScratch.clip);
+			}
 		}
 
 		if (direction == CatDirections.Left)
@@ -96,5 +120,7 @@ public class CatGraphicsController : MonoBehaviour
 		else {
 			cachedRenderer.flipX = true;
 		}
+
+		audioSourceWalk.volume = Mathf.Clamp(audioSourceWalk.volume, 0f, maxVolumeWalk);
 	}
 }
