@@ -224,10 +224,6 @@ PrefabInstance:
       propertyPath: right
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 156818760, guid: 4a28a4e1402ff4c449a5775e981eb298, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a28a4e1402ff4c449a5775e981eb298, type: 3}
 --- !u!1 &1019279647
@@ -493,6 +489,32 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 165230498}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &1670691317
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670691316}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.09321785, y: -1.1381044}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.92, y: 0.48}
+    newSize: {x: 12, y: 12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 1
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.872079, y: 3.3582792}
+  m_EdgeRadius: 0
 --- !u!50 &1670691322
 Rigidbody2D:
   serializedVersion: 4
@@ -514,6 +536,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!61 &1670691323
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670691316}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 4.3349886, y: -1.53531}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.92, y: 0.48}
+    newSize: {x: 12, y: 12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 1
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.7995992, y: 3.791449}
+  m_EdgeRadius: 0
 --- !u!70 &1670691324
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -969,10 +1017,5 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: f5f996660d955f344b2d8edb437ece0b,
         type: 3}
-    - target: {fileID: 116937767592320574, guid: f32d05625282f9d0391eb77aade6e6f9,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f32d05625282f9d0391eb77aade6e6f9, type: 3}
