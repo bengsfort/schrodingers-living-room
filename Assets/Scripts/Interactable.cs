@@ -6,9 +6,6 @@ public class Interactable : MonoBehaviour
 {
     private float mRatio;
 
-    public Sprite mLivingSprite;
-    public Sprite mDeadSprite;
-
     public FurnitureGraphicsController mGraphicsController;
 
     public void Interact(float change)

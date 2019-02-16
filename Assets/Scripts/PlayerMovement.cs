@@ -50,26 +50,32 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetKey (down)) {
 			transform.Translate (Time.deltaTime * speedX, -Time.deltaTime * speedY, 0);
 			cat_controller.ChangeDirectionRight();
+            cat_controller.ChangeAnimationWalking();
 		}
-		if (Input.GetKey (up)) {
+		else if (Input.GetKey (up)) {
 			transform.Translate (-Time.deltaTime * speedX, Time.deltaTime * speedY, 0);
 			cat_controller.ChangeDirectionLeft();
-		}
+            cat_controller.ChangeAnimationWalking();
+        }
 
-		if (Input.GetKey (right)) {
+		else if (Input.GetKey (right)) {
 			transform.Translate (Time.deltaTime * speedH, 0, 0);
 			cat_controller.ChangeDirectionRight();
-		}
-		if (Input.GetKey (left)) {
+            cat_controller.ChangeAnimationWalking();
+        }
+		else if (Input.GetKey (left)) {
 			transform.Translate (-Time.deltaTime * speedH, 0, 0);
 			cat_controller.ChangeDirectionLeft();
-		}
+            cat_controller.ChangeAnimationWalking();
+        }
+        else cat_controller.ChangeAnimationStanding();
 
         if (inter_script != null)
         {
-            if (Input.GetKeyDown(interact))
+            if (Input.GetKey(interact))
             {
                 inter_script.Interact(deadAliveMultiplier);
+                cat_controller.ChangeAnimationScratching();
             }
         }
     }
