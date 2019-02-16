@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D obj) {
 
-		print ("Player was triggered");
+		//print ("Player was triggered");
 
 		if (obj.gameObject.tag == "interobj") {
 			inter_script = obj.gameObject.GetComponent<Interactable>();
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D obj) {
 
-		print ("Player exited trigger mode");
+		//print ("Player exited trigger mode");
 
 		if (obj.gameObject.tag == "interobj") {
 			inter_script = null;
@@ -97,6 +97,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetKey (right) && RightKeyWorking) {
 			transform.Translate (Time.deltaTime * speedH, 0, 0);
 			cat_controller.ChangeDirectionRight();
+			cat_controller.ChangeAnimationWalking();
 		}
 		if (Input.GetKey (left) && LeftKeyWorking) {
 			transform.Translate (-Time.deltaTime * speedH, 0, 0);
@@ -105,12 +106,12 @@ public class PlayerMovement : MonoBehaviour {
         }
         else if (Input.anyKey == false) cat_controller.ChangeAnimationStanding();
 
-        if (inter_script != null)
-        {
-            if (Input.GetKey(interact))
-            {
+		if (Input.GetKey(interact))
+		{
+			cat_controller.ChangeAnimationScratching();
+        	if (inter_script != null)
+        	{
                 inter_script.Interact(deadAliveMultiplier);
-                cat_controller.ChangeAnimationScratching();
             }
         }
     }
