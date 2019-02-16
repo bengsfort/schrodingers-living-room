@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4116095816175219642}
   m_Layer: 0
   m_Name: Sessy
-  m_TagString: Untagged
+  m_TagString: interobj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6610ccb0b068a0547861dab6d703d618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mLivingSprite: {fileID: 0}
-  mDeadSprite: {fileID: 0}
+  mLivingTreshold: 50
+  mDeadTreshold: -50
   mGraphicsController: {fileID: 0}
 --- !u!212 &5876092582313942596
 SpriteRenderer:

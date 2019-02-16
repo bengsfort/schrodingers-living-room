@@ -5,6 +5,8 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     private float mRatio;
+    public float mLivingTreshold;
+    public float mDeadTreshold;
 
     public FurnitureGraphicsController mGraphicsController;
 
@@ -33,11 +35,11 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mRatio > 5f)
+        if (mRatio > mLivingTreshold)
         {
             mGraphicsController.quantumState = FurnitureGraphicsController.FurnitureQuantumStates.Live;
         }
-        else if (mRatio < -5f)
+        else if (mRatio < mDeadTreshold)
         {
             mGraphicsController.quantumState = FurnitureGraphicsController.FurnitureQuantumStates.Dead;
         }
