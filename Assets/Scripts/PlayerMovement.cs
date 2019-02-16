@@ -89,21 +89,21 @@ public class PlayerMovement : MonoBehaviour {
 			cat_controller.ChangeDirectionRight();
             cat_controller.ChangeAnimationWalking();
 		}
-		else if (Input.GetKey (up) && UpKeyWorking) {
+		if (Input.GetKey (up) && UpKeyWorking) {
 			transform.Translate (-Time.deltaTime * speedX, Time.deltaTime * speedY, 0);
 			cat_controller.ChangeDirectionLeft();
             cat_controller.ChangeAnimationWalking();
         }
-		else if (Input.GetKey (right) && RightKeyWorking) {
+		if (Input.GetKey (right) && RightKeyWorking) {
 			transform.Translate (Time.deltaTime * speedH, 0, 0);
 			cat_controller.ChangeDirectionRight();
 		}
-		else if (Input.GetKey (left) && LeftKeyWorking) {
+		if (Input.GetKey (left) && LeftKeyWorking) {
 			transform.Translate (-Time.deltaTime * speedH, 0, 0);
 			cat_controller.ChangeDirectionLeft();
             cat_controller.ChangeAnimationWalking();
         }
-        else cat_controller.ChangeAnimationStanding();
+        else if (Input.anyKey == false) cat_controller.ChangeAnimationStanding();
 
         if (inter_script != null)
         {
