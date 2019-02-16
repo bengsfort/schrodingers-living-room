@@ -30,12 +30,12 @@ public class GameState : MonoBehaviour
         if (mGameTime > 0f && mGameState == State.GAME)
         {
             mGameTime -= Time.deltaTime;
+            Debug.Log(mGameTime);
         }
         else if (mGameState == State.GAME)
         {
             mGameState = State.WON;
             GameOver();
         }
-        Debug.Log(mGameTime);
     }
 }
