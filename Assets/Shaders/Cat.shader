@@ -9,7 +9,7 @@
 			[HideInInspector] _Flip("Flip", Vector) = (1,1,1,1)
 			[PerRendererData] _AlphaTex("External Alpha", 2D) = "white" {}
 		[PerRendererData] _EnableExternalAlpha("Enable External Alpha", Float) = 0
-		_Frame("Frame", Float) = 0
+		_UVXMod("UVXMod", Vector) = (.25, 0, 0, 0)
 	}
 
 		SubShader
@@ -39,7 +39,7 @@
 				#pragma multi_compile _ ETC1_EXTERNAL_ALPHA
 				#include "UnitySprites.cginc"
 
-			float _Frame;
+			float4 _UVXMod;
 
 			v2f SpriteVertCat(appdata_t IN)
 			{
@@ -50,7 +50,7 @@
 
 				OUT.vertex = UnityFlipSprite(IN.vertex, _Flip);
 				OUT.vertex = UnityObjectToClipPos(OUT.vertex);
-				OUT.texcoord = IN.texcoord * float2(.25, 1) + float2(_Frame * .25, 0);
+				OUT.texcoord = IN.texcoord * float2(_UVXMod.x, 1) + float2(_UVXMod.y, 0);
 
 				OUT.color = IN.color * _Color * _RendererColor;
 

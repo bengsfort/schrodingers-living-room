@@ -20,9 +20,9 @@ public class CatGraphicsController : MonoBehaviour
 
 	public CatActions action = CatActions.Standing;
 
-	public Texture2D walkTexture;
+	public Sprite walkSprite;
 	public float walkAnimSpeed = 1f;
-	public Texture2D scratchTexture;
+	public Sprite scratchSprite;
 	public float scratchAnimSpeed = 1f;
 
 	private Material cachedMaterial;
@@ -43,18 +43,26 @@ public class CatGraphicsController : MonoBehaviour
     {
 		if (action == CatActions.Standing)
 		{
-			cachedMaterial.SetTexture("_MainTexture", walkTexture);
-			cachedMaterial.SetFloat("_Frame", 0);
+			cachedRenderer.sprite = walkSprite;
+			cachedMaterial.SetVector("_UVXMod", new Vector2(.25f, 0f));
 		}
 		else if (action == CatActions.Walking)
 		{
-			cachedMaterial.SetTexture("_MainTexture", walkTexture);
-			cachedMaterial.SetFloat("_Frame", Mathf.Floor((Time.time * walkAnimSpeed) % 4));
+			cachedRenderer.sprite = walkSprite;
+			cachedMaterial.SetVector("_UVXMod", new Vector2(
+					.25f,
+					Mathf.Floor((Time.time * walkAnimSpeed) % 4) * .25f
+				)
+			);
 		}
 		else if (action == CatActions.Scratching)
 		{
-			cachedMaterial.SetTexture("_MainTexture", scratchTexture);
-			cachedMaterial.SetFloat("_Frame", Mathf.Floor((Time.time * scratchAnimSpeed) % 4));
+			cachedRenderer.sprite = scratchSprite;
+			cachedMaterial.SetVector("_UVXMod", new Vector2(
+					.5f,
+					Mathf.Floor((Time.time * scratchAnimSpeed) % 2) * .5f
+				)
+			);
 		}
 
 		if (direction == CatDirections.Left)
