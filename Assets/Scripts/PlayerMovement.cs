@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	private CatGraphicsController cat_controller;
 
+	public KeyCode interact;
+
 	public KeyCode up;
 	public KeyCode down;
 	public KeyCode left;
@@ -51,6 +53,28 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
+    public float deadAliveMultiplier;
+
+    Interactable inter_script = null;
+
+    void OnTriggerEnter2D(Collider2D obj) {
+
+		print ("Player was triggered");
+
+		if (obj.gameObject.tag == "interobj") {
+			inter_script = obj.gameObject.GetComponent<Interactable>();
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D obj) {
+
+		print ("Player exited trigger mode");
+
+		if (obj.gameObject.tag == "interobj") {
+			inter_script = null;
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 		Physics2D.gravity = Vector2.zero;
@@ -71,6 +95,7 @@ public class PlayerMovement : MonoBehaviour {
 			transform.Translate (-Time.deltaTime * speedX, Time.deltaTime * speedY, 0);
 			cat_controller.ChangeDirectionLeft();
 		}
+
 		if (Input.GetKey (right) && RightKeyWorking) {
 			transform.Translate (Time.deltaTime * speedH, 0, 0);
 			cat_controller.ChangeDirectionRight();
@@ -79,13 +104,13 @@ public class PlayerMovement : MonoBehaviour {
 			transform.Translate (-Time.deltaTime * speedH, 0, 0);
 			cat_controller.ChangeDirectionLeft();
 		}
-			
-		//transform.Translate (moveh * Time.deltaTime * speedH, 0, 0);
 
-		// Move up down
-		//rb.velocity = new Vector2(rb.velocity.x, Input.GetAxis("Horizontal"));
-		// Move left right
-		//rb.velocity = new Vector2(rb.velocity.y, Input.GetAxis("Vertical"));
-		
-	}
+        if (inter_script != null)
+        {
+            if (Input.GetKeyDown(interact))
+            {
+                inter_script.Interact(deadAliveMultiplier);
+            }
+        }
+    }
 }

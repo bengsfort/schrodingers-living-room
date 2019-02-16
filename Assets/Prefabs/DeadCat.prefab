@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3164328437399032717}
   - component: {fileID: 1979289478467648567}
   - component: {fileID: 6604931623301174482}
+  - component: {fileID: 116937767592320574}
+  - component: {fileID: 116937767592320573}
   m_Layer: 0
   m_Name: DeadCat
   m_TagString: Untagged
@@ -46,13 +48,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vforce: 2
-  speedX: 25
-  speedY: 20
-  speedH: 50
+  speedX: 3
+  speedY: 2
+  speedH: 5
+  deadAliveMultiplier: -1
   up: 273
   down: 274
   left: 276
   right: 275
+  interact: 271
 --- !u!114 &1979289478467648567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,9 +71,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 0
   action: 0
-  walkSprite: {fileID: 21300000, guid: 580d63ea704ca984ba7778904579c9ce, type: 3}
+  walkSprite: {fileID: 21300000, guid: b94715eeafd5fcf429534a574e2f3d58, type: 3}
   walkAnimSpeed: 6
-  scratchSprite: {fileID: 21300000, guid: 2f9865307efa6eb41a28904180a4811b, type: 3}
+  scratchSprite: {fileID: 21300000, guid: f5f996660d955f344b2d8edb437ece0b, type: 3}
   scratchAnimSpeed: 6
 --- !u!212 &6604931623301174482
 SpriteRenderer:
@@ -119,3 +123,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &116937767592320574
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116937767592320572}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.92, y: 0.48}
+    newSize: {x: 12, y: 12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 1
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10, y: 10}
+  m_EdgeRadius: 0
+--- !u!50 &116937767592320573
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116937767592320572}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
