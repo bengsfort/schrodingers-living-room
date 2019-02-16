@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour {
     public float speedX;
     public float speedY;
     public float speedH;
+    public float deadAliveMultiplier;
 	Interactable inter_script = null;
 
 	void OnTriggerEnter2D(Collider2D obj) {
@@ -53,7 +54,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (inter_script != null) {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                inter_script.Interact();
+                inter_script.Interact(deadAliveMultiplier);
             }
         }
 

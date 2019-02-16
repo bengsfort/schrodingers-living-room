@@ -9,9 +9,10 @@ public class Interactable : MonoBehaviour
     public Sprite mLivingSprite;
     public Sprite mDeadSprite;
 
-    public void Interact()
+
+    public void Interact(float change)
     {
-        ChangeRatio(0.1f);
+        ChangeRatio(change);
     }
 
     public void ChangeRatio(float change)
