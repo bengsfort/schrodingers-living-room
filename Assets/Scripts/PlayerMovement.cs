@@ -6,6 +6,9 @@ public class PlayerMovement : MonoBehaviour {
 
 	public Rigidbody2D rb;
 	public float vforce = 2f;
+    public float speedX;
+    public float speedY;
+    public float speedH;
 	Interactions inter_script = null;
 
 	void OnTriggerEnter2D(Collider2D obj) {
@@ -38,13 +41,13 @@ public class PlayerMovement : MonoBehaviour {
 		float movev = Input.GetAxis ("Vertical");
 
 		if (Input.GetKey ("down")) {
-			transform.Translate (Time.deltaTime * 0.25f, -Time.deltaTime * 0.2f, 0);
+			transform.Translate (Time.deltaTime * speedX, -Time.deltaTime * speedY, 0);
 		}
 		if (Input.GetKey ("up")) {
-			transform.Translate (-Time.deltaTime * 0.25f, Time.deltaTime * 0.2f, 0);
+			transform.Translate (-Time.deltaTime * speedX, Time.deltaTime * speedY, 0);
 		}
 			
-		transform.Translate (moveh * Time.deltaTime * 0.5f, 0, 0);
+		transform.Translate (moveh * Time.deltaTime * speedH, 0, 0);
 
 			
 		if (inter_script != null) {
