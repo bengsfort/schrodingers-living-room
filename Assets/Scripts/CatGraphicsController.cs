@@ -25,6 +25,9 @@ public class CatGraphicsController : MonoBehaviour
 	public Sprite scratchSprite;
 	public float scratchAnimSpeed = 1f;
 
+	public SpriteRenderer scratchVFXRenderer;
+	public float scratchVFXAnimSpeed = 1f;
+
 	public AudioSource audioSourceWalk;
 	public float addWalkVolumePerSecond = 1f;
 	public AudioSource audioSourceScratch;
@@ -35,6 +38,10 @@ public class CatGraphicsController : MonoBehaviour
 
 	private Material cachedMaterial;
 	private SpriteRenderer cachedRenderer;
+
+	private Transform cachedVFXTransform;
+	private Material cachedVFXMaterial;
+	private float scratchVFXOriginalX = 0f;
 
 	public void ChangeDirectionLeft() {
 		if (direction == CatDirections.Right) {
@@ -78,6 +85,11 @@ public class CatGraphicsController : MonoBehaviour
 			maxVolumeScratch = audioSourceScratch.volume;
 			//audioSourceScratch.volume = 0f;
 		}
+		if (scratchVFXRenderer != null) {
+			cachedVFXMaterial = scratchVFXRenderer.material;
+			cachedVFXTransform = scratchVFXRenderer.GetComponent<Transform>();
+			scratchVFXOriginalX = cachedVFXTransform.localPosition.x;
+		}
 	}
 
     // Update is called once per frame
@@ -87,7 +99,6 @@ public class CatGraphicsController : MonoBehaviour
 		{
 			cachedRenderer.sprite = walkSprite;
 			cachedMaterial.SetVector("_UVXMod", new Vector2(.25f, 0f));
-			audioSourceWalk.volume -= addWalkVolumePerSecond * Time.deltaTime;
 		}
 		else if (action == CatActions.Walking)
 		{
@@ -107,9 +118,22 @@ public class CatGraphicsController : MonoBehaviour
 					Mathf.Floor((Time.time * scratchAnimSpeed) % 2) * .5f
 				)
 			);
-			audioSourceWalk.volume -= addWalkVolumePerSecond * Time.deltaTime;
 			if (!audioSourceScratch.isPlaying && Random.value < scratchMeowChancePerSecond * Time.deltaTime) {
 				audioSourceScratch.PlayOneShot(audioSourceScratch.clip);
+			}
+			if (scratchVFXRenderer != null) {
+				scratchVFXRenderer.enabled = true;
+				scratchVFXRenderer.flipX = cachedRenderer.flipX;
+				cachedVFXTransform.transform.localPosition = new Vector3(
+						scratchVFXOriginalX * (cachedRenderer.flipX ? -1f : 1f),
+						cachedVFXTransform.localPosition.y,
+						cachedVFXTransform.localPosition.z
+					);
+				cachedVFXMaterial.SetVector("_UVXMod", new Vector2(
+					.25f,
+					Mathf.Floor((Time.time * scratchVFXAnimSpeed) % 4) * .25f
+					)
+				);
 			}
 		}
 
@@ -119,6 +143,17 @@ public class CatGraphicsController : MonoBehaviour
 		}
 		else {
 			cachedRenderer.flipX = true;
+		}
+
+		//cleanup!
+		if (action != CatActions.Walking) {
+			audioSourceWalk.volume -= addWalkVolumePerSecond * Time.deltaTime;
+		}
+
+		if (action != CatActions.Scratching) {
+			if (scratchVFXRenderer != null) {
+				scratchVFXRenderer.enabled = false;
+			}
 		}
 
 		audioSourceWalk.volume = Mathf.Clamp(audioSourceWalk.volume, 0f, maxVolumeWalk);
