@@ -9,8 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4431923967452902088}
+  - component: {fileID: 4290921960762735579}
   - component: {fileID: 5876092582313942596}
   - component: {fileID: 6797093034214638017}
+  - component: {fileID: 6977914088821570724}
   m_Layer: 0
   m_Name: "Pelt\xF6\xF6"
   m_TagString: Untagged
@@ -32,6 +34,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4290921960762735579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6061005936295748717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6610ccb0b068a0547861dab6d703d618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mLivingSprite: {fileID: 0}
+  mDeadSprite: {fileID: 0}
+  mGraphicsController: {fileID: 0}
 --- !u!212 &5876092582313942596
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -93,3 +110,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quantumState: 0
+--- !u!58 &6977914088821570724
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6061005936295748717}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.24
