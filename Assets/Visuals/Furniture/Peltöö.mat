@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VaseA
+  m_Name: "Pelt\xF6\xF6"
   m_Shader: {fileID: 4800000, guid: 9153bc24ca6277445b2a9fb401af674f, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
