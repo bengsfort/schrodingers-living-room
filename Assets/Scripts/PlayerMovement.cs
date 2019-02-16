@@ -84,18 +84,16 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//float moveh = Input.GetAxis ("Horizontal");
-		//float movev = Input.GetAxis ("Vertical");
-
 		if (Input.GetKey (down) && DownKeyWorking) {
 			transform.Translate (Time.deltaTime * speedX, -Time.deltaTime * speedY, 0);
 			cat_controller.ChangeDirectionRight();
+            cat_controller.ChangeAnimationWalking();
 		}
 		if (Input.GetKey (up) && UpKeyWorking) {
 			transform.Translate (-Time.deltaTime * speedX, Time.deltaTime * speedY, 0);
 			cat_controller.ChangeDirectionLeft();
-		}
-
+            cat_controller.ChangeAnimationWalking();
+        }
 		if (Input.GetKey (right) && RightKeyWorking) {
 			transform.Translate (Time.deltaTime * speedH, 0, 0);
 			cat_controller.ChangeDirectionRight();
@@ -103,13 +101,16 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetKey (left) && LeftKeyWorking) {
 			transform.Translate (-Time.deltaTime * speedH, 0, 0);
 			cat_controller.ChangeDirectionLeft();
-		}
+            cat_controller.ChangeAnimationWalking();
+        }
+        else if (Input.anyKey == false) cat_controller.ChangeAnimationStanding();
 
         if (inter_script != null)
         {
-            if (Input.GetKeyDown(interact))
+            if (Input.GetKey(interact))
             {
                 inter_script.Interact(deadAliveMultiplier);
+                cat_controller.ChangeAnimationScratching();
             }
         }
     }

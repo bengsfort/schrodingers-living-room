@@ -38,6 +38,19 @@ public class CatGraphicsController : MonoBehaviour
 			direction =  CatDirections.Right;
 		}
 	}
+    public void ChangeAnimationScratching()
+    {
+        action = CatActions.Scratching;
+    }
+    public void ChangeAnimationWalking()
+    {
+        action = CatActions.Walking;
+    }
+    public void ChangeAnimationStanding()
+    {
+        action = CatActions.Standing;
+    }
+
 
     // Start is called before the first frame update
     void Start()
