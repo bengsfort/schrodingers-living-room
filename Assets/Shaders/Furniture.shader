@@ -100,7 +100,7 @@
 				fixed4 d = tex2D(_MainTexDead, IN.texcoord);
 				fixed4 l = tex2D(_MainTexLive, IN.texcoord);
 				float2 screenPos = IN.vertex.xy / _ScreenParams.w;
-				screenPos = floor(screenPos / 32);
+				screenPos = floor(screenPos / 16);
 				fixed state = saturate(_State + hash12(float2(_Time.w + screenPos.x, screenPos.y + _Time.x)));
 				fixed4 c = lerp(d, l, state);
 				c.rgb *= c.a;
