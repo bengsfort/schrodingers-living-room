@@ -28,6 +28,17 @@ public class CatGraphicsController : MonoBehaviour
 	private Material cachedMaterial;
 	private SpriteRenderer cachedRenderer;
 
+	public void ChangeDirectionLeft() {
+		if (direction == CatDirections.Right) {
+			direction =  CatDirections.Left;
+		}
+	}
+	public void ChangeDirectionRight() {
+		if (direction == CatDirections.Left) {
+			direction =  CatDirections.Right;
+		}
+	}
+
     // Start is called before the first frame update
     void Start()
     {
