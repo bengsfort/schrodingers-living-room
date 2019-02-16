@@ -17,6 +17,7 @@ public class Interactable : MonoBehaviour
     public void ChangeRatio(float change)
     {
         mRatio += change;
+        Debug.Log("ratio: " + mRatio);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

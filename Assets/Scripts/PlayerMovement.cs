@@ -9,14 +9,14 @@ public class PlayerMovement : MonoBehaviour {
     public float speedX;
     public float speedY;
     public float speedH;
-	Interactions inter_script = null;
+	Interactable inter_script = null;
 
 	void OnTriggerEnter2D(Collider2D obj) {
 
 		print ("Player was triggered");
 
 		if (obj.gameObject.tag == "interobj") {
-			inter_script = obj.gameObject.GetComponent<Interactions>();
+			inter_script = obj.gameObject.GetComponent<Interactable>();
 		}
 	}
 
@@ -51,14 +51,11 @@ public class PlayerMovement : MonoBehaviour {
 
 			
 		if (inter_script != null) {
-			print ("Do some triggering");
-			if (inter_script.isAlive ()) {
-				inter_script.makeDead ();
-			} else {
-				inter_script.makeAlive ();
-			}
-			inter_script = null;
-		}
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                inter_script.Interact();
+            }
+        }
 
 		// Move up down
 		//rb.velocity = new Vector2(rb.velocity.x, Input.GetAxis("Horizontal"));
