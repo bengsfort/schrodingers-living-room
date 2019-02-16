@@ -9,16 +9,53 @@ public class PlayerMovement : MonoBehaviour {
     public float speedX;
     public float speedY;
     public float speedH;
+
+	private CatGraphicsController cat_controller;
+
+	public KeyCode interact;
+
+	public KeyCode up;
+	public KeyCode down;
+	public KeyCode left;
+	public KeyCode right;
+	private bool UpKeyWorking = true;
+	private bool DownKeyWorking = true;
+	private bool LeftKeyWorking = true;
+	private bool RightKeyWorking = true;
+
+	void OnCollisionEnter2D (Collision2D coll) {
+		if (coll.gameObject.tag == "background_up") {
+			UpKeyWorking = false;
+		}
+		if (coll.gameObject.tag == "background_down") {
+			DownKeyWorking = false;
+		}
+		if (coll.gameObject.tag == "background_left") {
+			LeftKeyWorking = false;
+		}
+		if (coll.gameObject.tag == "background_right") {
+			RightKeyWorking = false;
+		}
+	}
+
+	void OnCollisionExit2D(Collision2D coll) {
+		if (coll.gameObject.tag == "background_up") {
+			UpKeyWorking = true;
+		}
+		if (coll.gameObject.tag == "background_down") {
+			DownKeyWorking = true;
+		}
+		if (coll.gameObject.tag == "background_left") {
+			LeftKeyWorking = true;
+		}
+		if (coll.gameObject.tag == "background_right") {
+			RightKeyWorking = true;
+		}
+	}
+
     public float deadAliveMultiplier;
 
-    public KeyCode up;
-    public KeyCode down;
-    public KeyCode left;
-    public KeyCode right;
-    public KeyCode interact;
-
     Interactable inter_script = null;
-    private CatGraphicsController cat_controller;
 
     void OnTriggerEnter2D(Collider2D obj) {
 
@@ -47,20 +84,23 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKey (down)) {
+		//float moveh = Input.GetAxis ("Horizontal");
+		//float movev = Input.GetAxis ("Vertical");
+
+		if (Input.GetKey (down) && DownKeyWorking) {
 			transform.Translate (Time.deltaTime * speedX, -Time.deltaTime * speedY, 0);
 			cat_controller.ChangeDirectionRight();
 		}
-		if (Input.GetKey (up)) {
+		if (Input.GetKey (up) && UpKeyWorking) {
 			transform.Translate (-Time.deltaTime * speedX, Time.deltaTime * speedY, 0);
 			cat_controller.ChangeDirectionLeft();
 		}
 
-		if (Input.GetKey (right)) {
+		if (Input.GetKey (right) && RightKeyWorking) {
 			transform.Translate (Time.deltaTime * speedH, 0, 0);
 			cat_controller.ChangeDirectionRight();
 		}
-		if (Input.GetKey (left)) {
+		if (Input.GetKey (left) && LeftKeyWorking) {
 			transform.Translate (-Time.deltaTime * speedH, 0, 0);
 			cat_controller.ChangeDirectionLeft();
 		}
