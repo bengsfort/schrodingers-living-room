@@ -36,6 +36,8 @@ public class CatGraphicsController : MonoBehaviour
 	private Material cachedMaterial;
 	private SpriteRenderer cachedRenderer;
 
+	private BoxCollider2D collisionTrigger;
+
 	public void ChangeDirectionLeft() {
 		if (direction == CatDirections.Right) {
 			direction =  CatDirections.Left;
@@ -64,6 +66,8 @@ public class CatGraphicsController : MonoBehaviour
     void Start()
     {
 		cachedRenderer = GetComponent<SpriteRenderer>();
+		collisionTrigger = GetComponent<BoxCollider2D>();
+
 		if (cachedRenderer != null) {
 			cachedMaterial = cachedRenderer.material;
 			cachedRenderer.material.shader = Shader.Find("Sch/Characters/Cat");
@@ -116,9 +120,11 @@ public class CatGraphicsController : MonoBehaviour
 		if (direction == CatDirections.Left)
 		{
 			cachedRenderer.flipX = false;
+			collisionTrigger.offset = new Vector2(-3.991034f, -0.4677124f); 
 		}
 		else {
 			cachedRenderer.flipX = true;
+			collisionTrigger.offset = new Vector2(3.991034f, -0.4677124f);
 		}
 
 		audioSourceWalk.volume = Mathf.Clamp(audioSourceWalk.volume, 0f, maxVolumeWalk);
