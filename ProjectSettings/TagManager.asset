@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - interobj
+  - background_right
+  - background_up
+  - background_down
+  - background_left
   layers:
   - Default
   - TransparentFX
