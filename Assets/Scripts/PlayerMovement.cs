@@ -91,6 +91,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetKey (right) && RightKeyWorking) {
 			transform.Translate (Time.deltaTime * speedH, 0, 0);
 			cat_controller.ChangeDirectionRight();
+			cat_controller.ChangeAnimationWalking();
 		}
 		if (Input.GetKey (left) && LeftKeyWorking) {
 			transform.Translate (-Time.deltaTime * speedH, 0, 0);
@@ -99,12 +100,12 @@ public class PlayerMovement : MonoBehaviour {
         }
         else if (Input.anyKey == false) cat_controller.ChangeAnimationStanding();
 
-        if (inter_script != null)
-        {
-            if (Input.GetKey(interact))
-            {
+		if (Input.GetKey(interact))
+		{
+			cat_controller.ChangeAnimationScratching();
+        	if (inter_script != null)
+        	{
                 inter_script.Interact(deadAliveMultiplier);
-                cat_controller.ChangeAnimationScratching();
             }
         }
     }

@@ -97,11 +97,17 @@
 
 			fixed4 SpriteFragFurniture(v2f IN) : SV_Target
 			{
-				fixed4 d = tex2D(_MainTexDead, IN.texcoord);
-				fixed4 l = tex2D(_MainTexLive, IN.texcoord);
+
 				float2 screenPos = IN.vertex.xy / _ScreenParams.w;
 				screenPos = floor(screenPos / 16);
-				fixed state = saturate(_State + hash12(float2(_Time.w + screenPos.x, screenPos.y + _Time.x)));
+				float2 noise = hash12(float2(_Time.w + screenPos.x, screenPos.y + _Time.x));
+				fixed state = saturate(_State + noise);
+
+				noise *= abs(_State) > .999 ? 0 : 1;
+
+				fixed4 d = tex2D(_MainTexDead, IN.texcoord + float2(noise.x * 0.081, 0));
+				fixed4 l = tex2D(_MainTexLive, IN.texcoord + float2(0, noise.y * 0.12));
+
 				fixed4 c = lerp(d, l, state);
 				c.rgb *= c.a;
 				return c;

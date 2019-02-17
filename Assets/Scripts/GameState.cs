@@ -1,26 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Linq;
 
 public class GameState : MonoBehaviour
 {
-    private enum State { GAME, WON, LOST }
+    private enum State { INTRO, GAME, END }
 
     private State mGameState;
     private float mGameTime;
-
-    public float mStartingTime;
-    public GameObject[] mFurniture;
 
     private Schrodinger mSchrodinger;
 
     private float mNoiseInterval;
     private float mTimeFromLastNoise;
+    private int mLivingAmount;
+    private int mDeadAmount;
+    private int mSuperAmount;
+
+    public float mStartingTime;
+    public GameObject[] mFurniture;
+
+    [Header("Drag Timer from GameUICanvas here")]
+    public Text mTimer;
+    [Header("Drag Text fields from FurnitureRatio here")]
+    public Text mLivingText;
+    public Text mDeadText;
 
     private void GameOver()
     {
-        if (mGameState == State.WON) Debug.Log("Won");
+        UpdateFurnitureRatio();
+        if (mLivingAmount == mDeadAmount && mSuperAmount == 0) Debug.Log("Won");
         else Debug.Log("Lost");
+    }
+
+    public void UpdateFurnitureRatio()
+    {
+        mLivingAmount = mFurniture.Where(x => x.GetComponent<Interactable>().mState == Interactable.State.LIVING).Count(x => x);
+        mDeadAmount = mFurniture.Where(x => x.GetComponent<Interactable>().mState == Interactable.State.DEAD).Count(x => x);
+        mSuperAmount = mFurniture.Length - mDeadAmount - mLivingAmount;
+        mLivingText.text = mLivingAmount.ToString();
+        mDeadText.text = mDeadAmount.ToString();
     }
 
     // Start is called before the first frame update
@@ -41,13 +62,14 @@ public class GameState : MonoBehaviour
         {
             mGameTime -= Time.deltaTime;
             mTimeFromLastNoise += Time.deltaTime;
+            mTimer.text = mGameTime.ToString();
         }
         else if (mGameState == State.GAME)
         {
-            mGameState = State.WON;
+            mGameState = State.END;
             GameOver();
         }
-        if (mTimeFromLastNoise >= mNoiseInterval)
+        if (mTimeFromLastNoise >= mNoiseInterval && mGameState == State.GAME)
         {
             mSchrodinger.MakeNoise();
             mNoiseInterval = mSchrodinger.mTimeBetweenNoise;
