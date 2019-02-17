@@ -22,6 +22,13 @@ public class SchrController : MonoBehaviour
 	private Material cachedMaterial;
 	private SpriteRenderer cachedRenderer;
 
+	public void SetTalking() {
+		action = SchrActions.Talking;
+	}
+	public void SetStanding() {
+		action = SchrActions.Standing;
+	}
+
 	void Start()
 	{
 		cachedRenderer = GetComponent<SpriteRenderer>();
