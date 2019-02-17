@@ -88,7 +88,7 @@ public class CatGraphicsController : MonoBehaviour
 		if (audioSourceScratch != null)
 		{
 			maxVolumeScratch = audioSourceScratch.volume;
-			//audioSourceScratch.volume = 0f;
+			audioSourceScratch.volume = 0f;
 		}
 		if (scratchVFXRenderer != null) {
 			cachedVFXMaterial = scratchVFXRenderer.material;
@@ -125,6 +125,7 @@ public class CatGraphicsController : MonoBehaviour
 			);
 			if (!audioSourceScratch.isPlaying && Random.value < scratchMeowChancePerSecond * Time.deltaTime) {
 				audioSourceScratch.PlayOneShot(audioSourceScratch.clip);
+				audioSourceScratch.volume = maxVolumeScratch;
 			}
 			if (scratchVFXRenderer != null) {
 				scratchVFXRenderer.enabled = true;
@@ -161,8 +162,10 @@ public class CatGraphicsController : MonoBehaviour
 			if (scratchVFXRenderer != null) {
 				scratchVFXRenderer.enabled = false;
 			}
+			audioSourceScratch.volume -= addWalkVolumePerSecond;
 		}
 
 		audioSourceWalk.volume = Mathf.Clamp(audioSourceWalk.volume, 0f, maxVolumeWalk);
+		audioSourceScratch.volume = Mathf.Clamp(audioSourceScratch.volume, 0f, maxVolumeScratch);
 	}
 }
