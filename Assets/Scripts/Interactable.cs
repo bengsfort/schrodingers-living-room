@@ -12,13 +12,18 @@ public class Interactable : MonoBehaviour
 
     public void Interact(float change)
     {
-        ChangeRatio(change);
+        ChangeRatio(change, true);
     }
 
-    public void ChangeRatio(float change)
+    public void ChangeRatio(float change, bool isInteract)
     {
-        mRatio += change;
-        Debug.Log("ratio: " + mRatio);
+        if (isInteract) mRatio += change;
+        else
+        {
+            if (Mathf.Abs(mRatio) < Mathf.Abs(change)) mRatio = 0;
+            else if (mRatio < 0) mRatio += change;
+            else if (mRatio > 0) mRatio -= change;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

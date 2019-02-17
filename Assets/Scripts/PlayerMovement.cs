@@ -58,18 +58,12 @@ public class PlayerMovement : MonoBehaviour {
     Interactable inter_script = null;
 
     void OnTriggerEnter2D(Collider2D obj) {
-
-		print ("Player was triggered");
-
 		if (obj.gameObject.tag == "interobj") {
 			inter_script = obj.gameObject.GetComponent<Interactable>();
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D obj) {
-
-		print ("Player exited trigger mode");
-
 		if (obj.gameObject.tag == "interobj") {
 			inter_script = null;
 		}
