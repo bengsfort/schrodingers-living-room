@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mLivingTreshold: 50
   mDeadTreshold: -50
+  mState: 0
   mGraphicsController: {fileID: 0}
 --- !u!212 &5876092582313942596
 SpriteRenderer:

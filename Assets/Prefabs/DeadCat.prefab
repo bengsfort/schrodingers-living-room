@@ -84,7 +84,7 @@ MonoBehaviour:
   audioSourceWalk: {fileID: 2878474379192517019}
   addWalkVolumePerSecond: 12
   audioSourceScratch: {fileID: 5508411161761191421}
-  scratchMeowChancePerSecond: 1
+  scratchMeowChancePerSecond: 1000
 --- !u!212 &6604931623301174482
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 13, y: 10}
   m_EdgeRadius: 0
 --- !u!50 &1223533899
 Rigidbody2D:
@@ -304,7 +304,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f833eaaf2e4acd74aa075c17a3085229, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
