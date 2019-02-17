@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 368675daad8ca524baab8904d277906f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxNoiseValue: 0
-  mMinNoiseValue: 0
-  mMaxFurniturePercentage: 1
-  mMinFurniturePercentage: 0.5
+  mMaxNoiseValue: 50
+  mMinNoiseValue: 25
+  mMaxFurniturePercentage: 0.5
+  mMinFurniturePercentage: 0.1
   mSpeedUp: 0.5
-  mTimeBetweenNoise: 5
+  mTimeBetweenNoise: 10
   mMaxFurnitureAmount: 0
   mMinFurnitureAmount: 0
   mFurniture: []
