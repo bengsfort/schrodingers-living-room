@@ -43,8 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f370a150d7f0d44be2a6dfacda0594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mStartingTime: 30
+  mStartingTime: 20
   mFurniture: []
-  mTimer: {fileID: 0}
-  mLivingText: {fileID: 0}
-  mDeadText: {fileID: 0}

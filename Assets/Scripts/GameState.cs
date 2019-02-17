@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
@@ -22,17 +23,18 @@ public class GameState : MonoBehaviour
     public float mStartingTime;
     public GameObject[] mFurniture;
 
-    [Header("Drag Timer from GameUICanvas here")]
-    public Text mTimer;
-    [Header("Drag Text fields from FurnitureRatio here")]
-    public Text mLivingText;
-    public Text mDeadText;
+    private Text mTimer;
+    private Text mLivingText;
+    private Text mDeadText;
+    private GameObject mEndPanel;
+    private Text mEndText;
 
     private void GameOver()
     {
         UpdateFurnitureRatio();
-        if (mLivingAmount == mDeadAmount && mSuperAmount == 0) Debug.Log("Won");
-        else Debug.Log("Lost");
+        mEndPanel.SetActive(true);
+        if (mLivingAmount == mDeadAmount && mSuperAmount == 0) mEndText.text = "You win";
+        else mEndText.text = "You lose";
     }
 
     public void UpdateFurnitureRatio()
@@ -44,9 +46,20 @@ public class GameState : MonoBehaviour
         mDeadText.text = mDeadAmount.ToString();
     }
 
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("IntroScreen");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        GameObject canvas = GameObject.Find("GameUICanvas");
+        mTimer = canvas.transform.Find("Timer").GetComponent<Text>();
+        mLivingText = canvas.transform.Find("FurnitureRatio").transform.Find("FurnitureLiving").GetComponent<Text>();
+        mDeadText = canvas.transform.Find("FurnitureRatio").transform.Find("FurnitureDead").GetComponent<Text>();
+        mEndPanel = canvas.transform.Find("GameOverPanel").gameObject;
+        mEndText = mEndPanel.transform.Find("GameOverText").GetComponent<Text>();
         mGameTime = mStartingTime;
         mGameState = State.GAME;
         mFurniture = GameObject.FindGameObjectsWithTag("interobj");
