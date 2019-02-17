@@ -46,7 +46,7 @@ public class Schrodinger : MonoBehaviour
     {
         float left = mLivingCat.transform.position.x + mDeadCat.transform.position.x;
         float right = mLivingCat.transform.position.y + mDeadCat.transform.position.y;
-        int seed = mQuantum.GetNewValue(left, right);
+        int seed = 0; //mQuantum.GetNewValue(left, right);
         if (seed != 0)
         {
             Random.InitState(seed);

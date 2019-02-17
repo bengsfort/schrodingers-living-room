@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7543771143609892689}
   - component: {fileID: 5594302398436612327}
+  - component: {fileID: 1103105969}
   m_Layer: 0
   m_Name: Schrodinger
   m_TagString: Untagged
@@ -43,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 368675daad8ca524baab8904d277906f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxNoiseValue: 100
-  mMinNoiseValue: 50
+  mMaxNoiseValue: 0
+  mMinNoiseValue: 0
   mMaxFurniturePercentage: 1
   mMinFurniturePercentage: 0.5
   mSpeedUp: 0.5
@@ -52,4 +53,15 @@ MonoBehaviour:
   mMaxFurnitureAmount: 0
   mMinFurnitureAmount: 0
   mFurniture: []
-  mGameState: {fileID: 0}
+--- !u!114 &1103105969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5594302398436612326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae8a25f9d519f744bbd70f9037bc174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

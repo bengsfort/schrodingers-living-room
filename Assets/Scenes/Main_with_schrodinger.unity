@@ -1512,20 +1512,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5594302398436612327, guid: 94b60bb61dac225498614582c16093dc,
-        type: 3}
-      propertyPath: mGameState
-      value: 
-      objectReference: {fileID: 622628585}
-    - target: {fileID: 5594302398436612327, guid: 94b60bb61dac225498614582c16093dc,
-        type: 3}
-      propertyPath: mMaxNoiseValue
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5594302398436612327, guid: 94b60bb61dac225498614582c16093dc,
-        type: 3}
-      propertyPath: mMinNoiseValue
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94b60bb61dac225498614582c16093dc, type: 3}
