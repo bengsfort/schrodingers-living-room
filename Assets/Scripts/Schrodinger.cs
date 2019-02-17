@@ -19,6 +19,10 @@ public class Schrodinger : MonoBehaviour
     public GameObject[] mFurniture;
 
     private GameState mGameState;
+    private QuantumManager mQuantum;
+
+    private GameObject mDeadCat;
+    private GameObject mLivingCat;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +31,9 @@ public class Schrodinger : MonoBehaviour
         mMaxFurnitureAmount = (int)Mathf.Round(mFurniture.Length * mMaxFurniturePercentage);
         mMinFurnitureAmount = (int)Mathf.Round(mFurniture.Length * mMinFurniturePercentage);
         mGameState = GameObject.Find("GameState").GetComponent<GameState>();
+        mDeadCat = GameObject.Find("DeadCat");
+        mLivingCat = GameObject.Find("LivingCat");
+        mQuantum = GetComponent<QuantumManager>();
     }
 
     // Update is called once per frame
@@ -35,9 +42,16 @@ public class Schrodinger : MonoBehaviour
         
     }
 
-    public void MakeNoise(int seed = 0)
+    public void MakeNoise()
     {
-        if (seed != 0) Random.InitState(seed); //TODO: implement seed with quantum stuff?
+        float left = mLivingCat.transform.position.x + mDeadCat.transform.position.x;
+        float right = mLivingCat.transform.position.y + mDeadCat.transform.position.y;
+        int seed = mQuantum.GetNewValue(left, right);
+        if (seed != 0)
+        {
+            Random.InitState(seed);
+            Debug.Log("quantum seed (" + seed + ") applied");
+        }
         else Random.InitState(System.DateTime.Now.Millisecond);
         System.Random rand = new System.Random();
         int amount = Random.Range(mMinFurnitureAmount, mMaxFurnitureAmount + 1);
@@ -47,7 +61,7 @@ public class Schrodinger : MonoBehaviour
         foreach (int i in chosenFurniture)
         {
             float noise = Random.Range(mMinNoiseValue, mMaxNoiseValue);
-            Debug.Log("noise for furniture " + i + ": " + noise);
+            //Debug.Log("noise for furniture " + i + ": " + noise);
             mFurniture[i].GetComponent<Interactable>().ChangeRatio(noise, false);
         }
 
