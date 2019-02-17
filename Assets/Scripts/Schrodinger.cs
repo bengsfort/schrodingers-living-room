@@ -19,7 +19,7 @@ public class Schrodinger : MonoBehaviour
     public GameObject[] mFurniture;
 
     private GameState mGameState;
-    private QuantumManager mQuantum;
+    //private QuantumManager mQuantum;
 
     private GameObject mDeadCat;
     private GameObject mLivingCat;
@@ -33,7 +33,7 @@ public class Schrodinger : MonoBehaviour
         mGameState = GameObject.Find("GameState").GetComponent<GameState>();
         mDeadCat = GameObject.Find("DeadCat");
         mLivingCat = GameObject.Find("LivingCat");
-        mQuantum = GetComponent<QuantumManager>();
+        //mQuantum = GetComponent<QuantumManager>();
     }
 
     // Update is called once per frame
