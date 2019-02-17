@@ -18,8 +18,7 @@ public class Schrodinger : MonoBehaviour
 
     public GameObject[] mFurniture;
 
-    [Header("Drag GameState object here")]
-    public GameState mGameState;
+    private GameState mGameState;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +26,7 @@ public class Schrodinger : MonoBehaviour
         mFurniture = GameObject.FindGameObjectsWithTag("interobj");
         mMaxFurnitureAmount = (int)Mathf.Round(mFurniture.Length * mMaxFurniturePercentage);
         mMinFurnitureAmount = (int)Mathf.Round(mFurniture.Length * mMinFurniturePercentage);
+        mGameState = GameObject.Find("GameState").GetComponent<GameState>();
     }
 
     // Update is called once per frame
