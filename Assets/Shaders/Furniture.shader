@@ -108,8 +108,8 @@
 
 				noise *= abs(_State) > .999 ? 0 : 1;
 
-				fixed4 d = tex2D(_MainTexDead, IN.texcoord + float2(noise.x * 0.081, 0));
-				fixed4 l = tex2D(_MainTexLive, IN.texcoord + float2(0, noise.y * 0.12));
+				fixed4 d = tex2D(_MainTexDead, IN.texcoord + float2(noise.x * 0.0405, 0));
+				fixed4 l = tex2D(_MainTexLive, IN.texcoord + float2(0, noise.y * 0.03));
 
 				fixed4 c = lerp(d, l, state);
 				c.rgb *= c.a;
