@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 2107233073371094584}
   - component: {fileID: 8342775457151118957}
   - component: {fileID: 7074044863393890545}
-  - component: {fileID: 1133440343436721120}
-  - component: {fileID: 3925078084685259022}
+  - component: {fileID: 8650635268750007990}
   m_Layer: 0
   m_Name: Obstru
   m_TagString: interobj
@@ -29,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4890192619567356916}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8, y: -3.36, z: -1.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -49,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mLivingTreshold: 50
   mDeadTreshold: -50
+  mState: 0
   mGraphicsController: {fileID: 0}
 --- !u!212 &8342775457151118957
 SpriteRenderer:
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quantumState: 0
---- !u!58 &1133440343436721120
-CircleCollider2D:
+--- !u!61 &8650635268750007990
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -124,22 +124,16 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00526011, y: -0.05786121}
+  m_Offset: {x: -0.15, y: -0.4}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.96, y: 2.16}
+    newSize: {x: 0.48, y: 0.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.334682
---- !u!58 &3925078084685259022
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4890192619567356916}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.12935771}
-  serializedVersion: 2
-  m_Radius: 0.2293577
+  m_Size: {x: 0.45, y: 1.37}
+  m_EdgeRadius: 0
