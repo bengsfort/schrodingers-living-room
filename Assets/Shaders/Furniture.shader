@@ -99,8 +99,11 @@
 			{
 
 				float2 screenPos = IN.vertex.xy / _ScreenParams.w;
-				screenPos = floor(screenPos / 16);
-				float2 noise = hash12(float2(_Time.w + screenPos.x, screenPos.y + _Time.x));
+				screenPos = floor(screenPos / 24);
+
+				float4 qTime = floor(_Time * 6) / 6;
+
+				float2 noise = hash12(float2(qTime.w + screenPos.x, screenPos.y + qTime.x));
 				fixed state = saturate(_State + noise);
 
 				noise *= abs(_State) > .999 ? 0 : 1;
