@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LoadSceneManager : MonoBehaviour
 {
 	public void LoadMain() {
-		SceneManager.LoadScene("Main", LoadSceneMode.Single);
+		SceneManager.LoadScene("ConversationScene", LoadSceneMode.Single);
 	}
 
 	public void LoadCredits() {

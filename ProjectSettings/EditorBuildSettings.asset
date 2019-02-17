@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CreditScreen.unity
     guid: 1fca44d5fcd6f967fb729a787db7b6c6
+  - enabled: 1
+    path: Assets/Scenes/ConversationScene.unity
+    guid: 0e0ab33563d9500d3a0ed7bd2dc9f8f4
   m_configObjects: {}

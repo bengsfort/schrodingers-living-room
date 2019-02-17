@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IntroConversation : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class IntroConversation : MonoBehaviour
 		"So nice and cosy!\nI like it to remain\nundetermined\nforever!",
 		"No way!",
 		"Show Schroedinger who owns the living room!\nScratch an equal number of undetermined\nfurniture to turn it dead or alive.\nTime’s running!",
-		"But be aware that Schrödinger\nwill be back with some quantum noise", 
+		"But be aware that Schroedinger\nwill be back with some quantum noise", 
 		"And then,\nnothing will be\ntrivial anymore!\nMuahahahah!"};
-	private float[] wait = {2.5f, 2.5f, 2.5f, 2f, 4f, 3f, 3f};
+	private float[] wait = {2.5f, 3.5f, 3.5f, 2f, 6f, 4f, 4.5f};
 	private int[] order = {0, 0, 0, 1, 2, 2, 0};
 
 	private GameObject spriteSch;
@@ -80,6 +81,7 @@ public class IntroConversation : MonoBehaviour
 			}
 		}
 
+		SceneManager.LoadScene("Main", LoadSceneMode.Single);
 	}
 
 
