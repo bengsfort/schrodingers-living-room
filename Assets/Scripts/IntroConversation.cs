@@ -12,19 +12,32 @@ public class IntroConversation : MonoBehaviour
 		"So nice and cosy!\nI like it to remain\nundetermined\nforever!",
 		"No way!",
 		"Show Schroedinger who owns the living room!\nScratch an equal number of undetermined\nfurniture to turn it dead or alive.\nTime’s running!",
-		"But be aware that Schroedinger\nwill be back with some quantum noise", 
+		"But be aware...\nSchroedinger will be back with some quantum\nnoise!", 
 		"And then,\nnothing will be\ntrivial anymore!\nMuahahahah!"};
-	private float[] wait = {2.5f, 3.5f, 3.5f, 2f, 6f, 4f, 4.5f};
+	private float[] wait = {3.5f, 3.5f, 3.5f, 1.5f, 6f, 4f, 3.5f};
 	private int[] order = {0, 0, 0, 1, 2, 2, 0};
 
+	public AudioClip audioAlive;
+	public AudioClip audioDead;
+	private AudioSource audioSource;
+
+	// speech bubble
 	private GameObject spriteSch;
 	private GameObject spriteCat;
+	// text in speech bubble
 	private TextMesh textSch;
 	public GameObject textCat;
 	public GameObject textGameInstr;
+
+	// prefabs
 	public GameObject Schr;
 	public GameObject CatAlive;
 	public GameObject CatDead;
+
+	public void LoadMain() {
+		SceneManager.LoadScene("Main", LoadSceneMode.Single);
+	}
+
 
 	private IEnumerator SpeechBubble() {
 
@@ -44,10 +57,10 @@ public class IntroConversation : MonoBehaviour
 			// cat
 			} else if (order[i] == 1) {
 
+				audioSource.PlayOneShot(audioAlive, 0.7F);
+				audioSource.PlayOneShot(audioDead, 0.7F);
 				spriteCat.SetActive(true);
 				textCat.GetComponent<TextMesh>().text = speech[i];
-				//CatDead.GetComponent<SchrController>().SetTalking();
-				//CatAlive.GetComponent<SchrController>().SetTalking();
 				
 			// instructions
 			} else {
@@ -69,9 +82,7 @@ public class IntroConversation : MonoBehaviour
 			} else if (order[i] == 1) {
 
 				spriteCat.SetActive(false);
-				textCat.GetComponent<TextMesh>().text = "";
-				//CatDead.GetComponent<SchrController>().SetStanding();
-				//CatAlive.GetComponent<SchrController>().SetStanding();
+				textCat.GetComponent<TextMesh>().text = "";;
 
 				// instructions
 			} else {
@@ -88,14 +99,15 @@ public class IntroConversation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		// audio
+		audioSource = GetComponent<AudioSource>();
+		// speechbubble sprites, hidden at first, activated when textmesh is activated
 		spriteSch = GameObject.Find("SpeechBubbleSchr");
 		spriteCat = GameObject.Find("SpeechBubbleCat");
 		spriteSch.SetActive(false);
 		spriteCat.SetActive(false);
 
 		textSch = GetComponent<TextMesh>();
-		//textGameInstr = GameObject.Find("GameInstructions");
-		//textCat = GameObject.Find("Cat");
 
 		coroutine = SpeechBubble();
 		StartCoroutine(coroutine);
@@ -104,6 +116,8 @@ public class IntroConversation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+		if (Input.GetKey("space")) {
+			LoadMain ();
+		}
     }
 }

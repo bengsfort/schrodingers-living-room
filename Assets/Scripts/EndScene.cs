@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EndScene : MonoBehaviour
 {
-	public void LoadMain() {
+	public void LoadIntro() {
 		SceneManager.LoadScene("IntroScreen", LoadSceneMode.Single);
 	}
 
@@ -13,7 +13,7 @@ public class EndScene : MonoBehaviour
     void Update()
     {
 		if (Input.anyKey) {
-			LoadMain ();
+			LoadIntro ();
 		}
     }
 }

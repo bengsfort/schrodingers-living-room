@@ -18,6 +18,15 @@ public class CatGraphicsController : MonoBehaviour
 		Scratching
 	}
 
+	public void SetTalking() {
+		for (int i = 0; i < 10; i++) {
+			action = CatActions.Walking;
+		}
+	}
+	public void SetStanding() {
+		action = CatActions.Standing;
+	}
+
 	public CatActions action = CatActions.Standing;
 
 	public Sprite walkSprite;
