@@ -5,15 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneManager : MonoBehaviour
 {
-	public void LoadMain() {
-		SceneManager.LoadScene("ConversationScene", LoadSceneMode.Single);
-	}
 
-	public void LoadCredits() {
-		SceneManager.LoadScene("CreditScreen", LoadSceneMode.Single);
-	}
+    public AudioClip onClick;
+    private AudioSource audioSource;
 
-	public void Exit() {
-		//Application.Quit();
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void LoadMain()
+    {
+        audioSource.PlayOneShot(onClick, 0.7F);
+        SceneManager.LoadScene("ConversationScene", LoadSceneMode.Single);
+    }
+
+    public void LoadCredits()
+    {
+        audioSource.PlayOneShot(onClick, 0.7F);
+        SceneManager.LoadScene("CreditScreen", LoadSceneMode.Single);
+    }
+
+    public void Exit()
+    {
+        //Application.Quit();
     }
 }

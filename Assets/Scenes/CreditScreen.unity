@@ -323,27 +323,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Credits:
-
-
-    A game by
-
-
-    Adelina Lintuluoto,
-
-    Daria Anttila
-
-    Matt Bengston
-
-    Sabine Harrer
-
-    Simon Nielsen
-
-    Reetu Kontio
-
-    Vasilii Sevriuk
-
-'
+  m_Text: "Credits:\n\nA game by\n\nAdelina Lintuluoto\x13\nDaria Anttila\nMatt Bengston\nSabine
+    Harrer\nSimon Nielsen\nReetu Kontio\nVasilii Sevriuk\n"
 --- !u!222 &1185251162
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -434,6 +415,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1626238417
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6894920687767433135, guid: d54332ad95ce5e141aa15d1d6cf0e885,
+        type: 3}
+      propertyPath: m_Name
+      value: Music
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894920687767433129, guid: d54332ad95ce5e141aa15d1d6cf0e885,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.939
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894920687767433129, guid: d54332ad95ce5e141aa15d1d6cf0e885,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894920687767433129, guid: d54332ad95ce5e141aa15d1d6cf0e885,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894920687767433129, guid: d54332ad95ce5e141aa15d1d6cf0e885,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894920687767433129, guid: d54332ad95ce5e141aa15d1d6cf0e885,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894920687767433129, guid: d54332ad95ce5e141aa15d1d6cf0e885,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894920687767433129, guid: d54332ad95ce5e141aa15d1d6cf0e885,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894920687767433129, guid: d54332ad95ce5e141aa15d1d6cf0e885,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894920687767433129, guid: d54332ad95ce5e141aa15d1d6cf0e885,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894920687767433129, guid: d54332ad95ce5e141aa15d1d6cf0e885,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894920687767433129, guid: d54332ad95ce5e141aa15d1d6cf0e885,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d54332ad95ce5e141aa15d1d6cf0e885, type: 3}
 --- !u!1 &1628274825
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,8 +33,8 @@ public class GameState : MonoBehaviour
     {
         UpdateFurnitureRatio();
         mEndPanel.SetActive(true);
-		if (mLivingAmount == mDeadAmount && mSuperAmount == 0) mEndText.text = "Meow!\nSchroedinger cat, you won your owner";
-		else mEndText.text = "No one will make\nSchroedingers furniture determined!\nNot even his cat!";
+		if (mLivingAmount == mDeadAmount && mSuperAmount == 0) mEndText.text = "Meow!\nSchroedinger cat, you won your owner!";
+		else mEndText.text = "No one will make\nSchroedingers furniture determined!\nNot even his cat\nYou lost!";
     }
 
     public void UpdateFurnitureRatio()
