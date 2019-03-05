@@ -55,7 +55,7 @@ MonoBehaviour:
   speedX: 3
   speedY: 2
   speedH: 5
-  interact: 271
+  interact: 32
   up: 273
   down: 274
   left: 276
@@ -193,8 +193,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1}
-  m_Size: {x: 5, y: 5}
+  m_Offset: {x: -0.9314406, y: -0.53428024}
+  m_Size: {x: 6.8628874, y: 6.8628874}
   m_Direction: 0
 --- !u!82 &2878474379192517019
 AudioSource:

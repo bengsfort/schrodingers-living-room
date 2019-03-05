@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class IntroConversation : MonoBehaviour
@@ -11,13 +12,15 @@ public class IntroConversation : MonoBehaviour
         "All the furniture\nin my lovely living\nroom is |dead>+|alive>\nsimultaneously!",
         "So nice and cosy!\nI like it to remain\nundetermined\nforever!",
         "No way!",
-        "Show Schroedinger who owns the living room!\nScratch an equal number of undetermined\nfurniture to turn it dead or alive.\nTime’s running!",
-        "But be aware...\nSchroedinger will be back with some quantum\nnoise!",
+        "Show Schroedinger who owns the living room!\n\nScratch an equal number of undetermined furniture to turn it dead or alive.\n\nTime’s running!",
+        "But be aware...\n\nSchroedinger will be back with some quantum\nnoise!",
         "And then,\nnothing will be\ntrivial anymore!\nMuahahahah!"};
     private float[] wait = { 3.5f, 3.5f, 3.5f, 1.5f, 6f, 4f, 3.5f };
     private int[] order = { 0, 0, 0, 1, 2, 2, 0 };
 
     private int i;
+
+	private float nextAllowedInputTime = -1000f;
 
     public AudioClip audioAlive;
     public AudioClip audioDead;
@@ -27,7 +30,7 @@ public class IntroConversation : MonoBehaviour
     private GameObject spriteSch;
     private GameObject spriteCat;
     // text in speech bubble
-    private TextMesh textSch;
+    private Text textSch;
     public GameObject textCat;
     public GameObject textGameInstr;
 
@@ -35,6 +38,8 @@ public class IntroConversation : MonoBehaviour
     public GameObject Schr;
     public GameObject CatAlive;
     public GameObject CatDead;
+
+	public float inputMoratorium = .5f;
 
     public void LoadMain()
     {
@@ -47,16 +52,17 @@ public class IntroConversation : MonoBehaviour
         if (i == 7)
         {
             LoadMain();
+			return;
         }
 				
         // schroedinger
         if (order[i] == 0)
         {
 
-            textGameInstr.GetComponent<TextMesh>().text = "";
+            textGameInstr.GetComponent<Text>().text = "";
 
             spriteCat.SetActive(false);
-            textCat.GetComponent<TextMesh>().text = ""; ;
+            textCat.GetComponent<Text>().text = ""; ;
 
             spriteSch.SetActive(true);
             textSch.text = speech[i];
@@ -67,7 +73,7 @@ public class IntroConversation : MonoBehaviour
         else if (order[i] == 1)
         {
 
-            textGameInstr.GetComponent<TextMesh>().text = "";
+            textGameInstr.GetComponent<Text>().text = "";
 
             spriteSch.SetActive(false);
             textSch.text = "";
@@ -76,7 +82,7 @@ public class IntroConversation : MonoBehaviour
             audioSource.PlayOneShot(audioAlive, 0.7F);
             audioSource.PlayOneShot(audioDead, 0.7F);
             spriteCat.SetActive(true);
-            textCat.GetComponent<TextMesh>().text = speech[i];
+            textCat.GetComponent<Text>().text = speech[i];
 
             // instructions
         }
@@ -84,13 +90,13 @@ public class IntroConversation : MonoBehaviour
         {
 
             spriteCat.SetActive(false);
-            textCat.GetComponent<TextMesh>().text = ""; ;
+            textCat.GetComponent<Text>().text = ""; ;
 
             spriteSch.SetActive(false);
             textSch.text = "";
             Schr.GetComponent<SchrController>().SetStanding();
 
-            textGameInstr.GetComponent<TextMesh>().text = speech[i];
+            textGameInstr.GetComponent<Text>().text = speech[i];
 
         }
     }
@@ -107,18 +113,21 @@ public class IntroConversation : MonoBehaviour
         spriteSch.SetActive(false);
         spriteCat.SetActive(false);
 
-        textSch = GetComponent<TextMesh>();
+        textSch = GetComponent<Text>();
 
         i = 0;
+		SpeechBubble();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.anyKeyDown && Time.time > nextAllowedInputTime)
         {
             SpeechBubble();
-            i++;
+			nextAllowedInputTime = Time.time + inputMoratorium;
+
+			i++;
         }
     }
 }

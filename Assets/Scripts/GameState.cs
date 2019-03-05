@@ -22,11 +22,13 @@ public class GameState : MonoBehaviour
 
     public float mStartingTime;
     public GameObject[] mFurniture;
+	public Gradient balanceColors;
 
     private Text mTimer;
     private Text mLivingText;
     private Text mDeadText;
-    private GameObject mEndPanel;
+	private Text mBalanceText;
+	private GameObject mEndPanel;
     private Text mEndText;
 
     private void GameOver()
@@ -44,6 +46,13 @@ public class GameState : MonoBehaviour
         mSuperAmount = mFurniture.Length - mDeadAmount - mLivingAmount;
         mLivingText.text = mLivingAmount.ToString();
         mDeadText.text = mDeadAmount.ToString();
+		if (mDeadAmount > 0 && mDeadAmount == mLivingAmount)
+		{
+			mBalanceText.text = "balance!";
+		}
+		else {
+			mBalanceText.text = "";
+		}
     }
 
     public void BackToMenu()
@@ -58,7 +67,8 @@ public class GameState : MonoBehaviour
         mTimer = canvas.transform.Find("Timer").GetComponent<Text>();
         mLivingText = canvas.transform.Find("FurnitureRatio").transform.Find("FurnitureLiving").GetComponent<Text>();
         mDeadText = canvas.transform.Find("FurnitureRatio").transform.Find("FurnitureDead").GetComponent<Text>();
-        mEndPanel = canvas.transform.Find("GameOverPanel").gameObject;
+		mBalanceText = canvas.transform.Find("FurnitureRatio").transform.Find("BalanceCaption").GetComponent<Text>();
+		mEndPanel = canvas.transform.Find("GameOverPanel").gameObject;
         mEndText = mEndPanel.transform.Find("GameOverText").GetComponent<Text>();
         mGameTime = mStartingTime;
         mGameState = State.GAME;
@@ -71,7 +81,9 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mGameTime > 0f && mGameState == State.GAME)
+		mBalanceText.color = balanceColors.Evaluate(Random.value);
+
+		if (mGameTime > 0f && mGameState == State.GAME)
         {
             mGameTime -= Time.deltaTime;
             mTimeFromLastNoise += Time.deltaTime;
